@@ -12,4 +12,12 @@ export class NoteService {
     const note = new this.noteModel(createNoteDto);
     return await note.save();
   }
+
+  async getNotes(): Promise<Note[]> {
+    return await this.noteModel.find();
+  }
+
+  async getNote(id): Promise<Note> {
+    return await this.noteModel.findById(id);
+  }
 }
