@@ -20,4 +20,18 @@ export class NoteService {
   async getNote(id): Promise<Note> {
     return await this.noteModel.findById(id);
   }
+
+  async setFavorite(id): Promise<Note> {
+    return await this.noteModel.findByIdAndUpdate(
+      id,
+      { favorite: true },
+      {
+        new: true,
+      },
+    );
+  }
+
+  async getFavoritesNotes(): Promise<Note[]> {
+    return await this.noteModel.find({ favorite: true });
+  }
 }
